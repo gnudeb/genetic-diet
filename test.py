@@ -11,7 +11,7 @@ class MockSource(CreatureSource[int]):
 
 class MockMutator(CreatureMutator[int]):
 
-    def mutate(self, creature: int) -> int:
+    def get_mutated(self, creature: int) -> int:
         return creature + 1
 
 

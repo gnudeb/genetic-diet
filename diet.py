@@ -67,7 +67,7 @@ class DietMutator(CreatureMutator[Diet]):
         self._food_items = list(food_items)
         self._mutation_rate = mutation_rate
 
-    def mutate(self, creature: Diet) -> Diet:
+    def get_mutated(self, creature: Diet) -> Diet:
         new_diet = creature.copy()
         if probability(self._mutation_rate):
             self._remove_random_food_item_from(new_diet)

@@ -14,7 +14,7 @@ class CreatureSource(Generic[Creature]):
 
 class CreatureMutator(Generic[Creature]):
 
-    def mutate(self, creature: Creature) -> Creature:
+    def get_mutated(self, creature: Creature) -> Creature:
         raise NotImplementedError
 
 
@@ -84,4 +84,4 @@ class Pool(Generic[Creature]):
         return choice(self._pool)
 
     def _mutated(self, creature: Creature) -> Creature:
-        return self._creature_mutator.mutate(creature)
+        return self._creature_mutator.get_mutated(creature)
