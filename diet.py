@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from random import random, choice
 from typing import NamedTuple, Dict, Iterable, Iterator
 
-from pool import CreatureSource, CreatureMutator, CreatureEvaluator, Pool
+from pool import CreatureSource, CreatureMutator, CreatureEvaluator
 
 
 class FoodItem(NamedTuple):
@@ -131,25 +131,3 @@ def print_diet(diet: Diet):
     print()
     print(f"Total kcalories: {diet.total_calories()}")
     print(f"Total cost: {diet.total_cost()}")
-
-
-if __name__ == '__main__':
-    pool = Pool(
-        source=DietSource(),
-        mutator=DietMutator(
-            food_items=items_from_csv("sample_items.csv"),
-            mutation_rate=0.3
-        ),
-        evaluator=DietEvaluator(
-            target_total_kcal=2000,
-            target_cost=100,
-        ),
-        size=16,
-    )
-
-    for _ in range(100):
-        pool.next_generation()
-
-    diet: Diet = pool.best_creature()
-
-    print_diet(diet)
